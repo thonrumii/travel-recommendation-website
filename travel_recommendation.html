@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Task 1: HTML template structure with head and title tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelBloom - Contact Us</title>
+    <title>TravelBloom</title>
+    
     <style>
         * {
             box-sizing: border-box;
@@ -15,13 +17,13 @@
         body {
             background-color: #0b1d28;
             color: #ffffff;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* Navbar without search bar per instructions */
+        /* Task 2: Navbar Styling */
         .navbar {
             display: flex;
             align-items: center;
@@ -35,6 +37,9 @@
             font-size: 22px;
             font-weight: bold;
             font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-links {
@@ -46,32 +51,65 @@
             color: #ffffff;
             text-decoration: none;
             font-size: 15px;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
             color: #00b4d8;
         }
 
-        /* Main Section with Background */
+        /* Task 2: Search Container & Action Buttons */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 4px 6px 4px 15px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            padding: 6px;
+            font-size: 14px;
+            width: 220px;
+            color: #333333;
+        }
+
+        .btn-search, .btn-clear {
+            background-color: #008080;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-left: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-search:hover, .btn-clear:hover {
+            background-color: #006666;
+        }
+
+        /* Task 3: Home Page Section & Background Image */
         .hero-section {
             flex: 1;
             position: relative;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600') center/cover no-repeat;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 100px;
+            align-items: flex-start;
+            padding: 60px 40px;
+            gap: 40px;
         }
 
-        /* Social Sidebar */
+        /* Task 3: Social Media Icons Sidebar */
         .social-sidebar {
-            position: absolute;
-            left: 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            z-index: 5;
+            margin-top: 20px;
         }
 
         .social-sidebar a {
@@ -86,100 +124,135 @@
             opacity: 1;
         }
 
-        /* Contact Header Left Side */
-        .contact-info h1 {
-            font-size: 52px;
+        /* Task 3: Website Introduction Content */
+        .content-box {
+            max-width: 450px;
+        }
+
+        .content-box h1 {
+            font-size: 48px;
             font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
             letter-spacing: 1px;
-            margin-bottom: 10px;
         }
 
-        .contact-info p {
-            font-size: 18px;
+        .content-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
             color: #e0e0e0;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
         }
 
-        /* Contact Form Right Side */
-        .contact-form-card {
-            background-color: rgba(18, 43, 57, 0.65);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 10px;
-            width: 450px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 6px;
-            color: #ffffff;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-            padding: 10px 12px;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #a0a0a0;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #008080;
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-group textarea {
-            resize: none;
-            height: 100px;
-        }
-
-        .btn-submit {
-            width: 100%;
+        .btn-book {
             background-color: #008080;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 15px;
+            padding: 10px 24px;
+            border-radius: 5px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        .btn-submit:hover {
+        .btn-book:hover {
             background-color: #006666;
+        }
+
+        /* Results Display Grid (for search functionality) */
+        .results-wrapper {
+            flex: 1;
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .result-card {
+            background-color: #ffffff;
+            color: #333333;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .result-card h3 {
+            font-size: 18px;
+            padding: 12px 15px 5px 15px;
+            color: #122b39;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            padding: 0 15px 15px 15px;
+            color: #555555;
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .btn-visit {
+            background-color: #008080;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 0 15px 15px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-visit:hover {
+            background-color: #006666;
+        }
+
+        .no-result {
+            color: #ffffff;
+            font-size: 16px;
+            grid-column: 1 / -1;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Task 2: Navbar with Home, About Us, Contact Us anchor links, search bar input, Search button, and Reset button -->
     <nav class="navbar">
-        <div class="nav-brand">🌐 TravelBloom</div>
+        <div class="nav-brand">
+            <span>🌐 TravelBloom</span>
+        </div>
+
         <div class="nav-links">
             <a href="./travel_recommendation.html">Home</a>
             <a href="./about_us.html">About Us</a>
             <a href="./contact_us.html">Contact Us</a>
         </div>
+
+        <div class="search-container">
+            <input type="text" id="conditionInput" placeholder="Enter a destination or keyword">
+            <button id="btnSearch" class="btn-search">Search</button>
+            <button id="btnClear" class="btn-clear">Clear</button>
+        </div>
     </nav>
 
+    <!-- Task 3: Home Page Section with background image and website introduction -->
     <main class="hero-section">
-        <!-- Social Sidebar -->
+        <!-- Social Media Platform Icons -->
         <div class="social-sidebar">
             <a href="#">🐦</a>
             <a href="#">📘</a>
@@ -187,34 +260,26 @@
             <a href="#">▶</a>
         </div>
 
-        <!-- Left Heading -->
-        <div class="contact-info">
-            <h1>CONTACT US</h1>
-            <p>Get in touch</p>
+        <!-- Site Introduction & Call To Action -->
+        <div class="content-box">
+            <h1>EXPLORE<br>DREAM<br>DESTINATION</h1>
+            <p>
+                The Travel Recommendation App helps users explore popular travel destinations 
+                through an interactive and user-friendly interface. It allows users to search for 
+                beaches, temples, countries, or specific country names to view related cities along 
+                with images and descriptions. The app dynamically fetches data from a structured 
+                JSON file to display relevant results. It provides a simple and efficient way to 
+                discover and plan travel destinations.
+            </p>
+            <button class="btn-book">Book Now</button>
         </div>
 
-        <!-- Right Form Box -->
-        <div class="contact-form-card">
-            <form id="contactForm" onsubmit="event.preventDefault(); alert('Message submitted successfully!');">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Enter your message" required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">Submit</button>
-            </form>
-        </div>
+        <!-- Container for rendering recommendation results in a grid -->
+        <div id="resultContainer" class="results-wrapper"></div>
     </main>
+
+    <!-- Script linking for fetch & search logic -->
+    <script src="./travel_recommendation.js"></script>
 
 </body>
 </html>

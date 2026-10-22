@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBloom - About Us</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b1d28;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Task 4: Navbar without search bar & buttons */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(18, 43, 57, 0.95);
+            padding: 15px 40px;
+            z-index: 10;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00b4d8;
+        }
+
+        /* Hero Container */
+        .hero-section {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600') center/cover no-repeat;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Social Sidebar */
+        .social-sidebar {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        /* Company Overview Section */
+        .about-header {
+            margin-left: 60px;
+            max-width: 900px;
+        }
+
+        .about-header h1 {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .about-header p {
+            font-size: 14px;
+            line-height: 1.6;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin-left: 60px;
+            margin-top: 30px;
+        }
+
+        .team-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .team-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .team-card {
+            background-color: rgba(18, 43, 57, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            color: #122b39;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .team-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .team-card p {
+            font-size: 12px;
+            color: #cccccc;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .role-badge {
+            background-color: #008080;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Task 4 Navbar (Only Home, About Us, Contact Us) -->
+    <nav class="navbar">
+        <div class="nav-brand">🌐 TravelBloom</div>
+        <div class="nav-links">
+            <a href="./travel_recommendation.html">Home</a>
+            <a href="./about_us.html">About Us</a>
+            <a href="./contact_us.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="hero-section">
+        <div class="social-sidebar">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">📷</a>
+            <a href="#">▶</a>
+        </div>
+
+        <!-- Information about the company -->
+        <div class="about-header">
+            <h1>ABOUT US</h1>
+            <p>
+                Welcome to Our Company! We are a team of passionate individuals dedicated to providing excellent services/products to our customers. Our mission is to provide the best experience for people traveling to different destinations around the world.<br><br>
+                Our values include integrity, innovation, customer satisfaction, and teamwork. We believe in putting our customers first and working together to achieve our goals.<br><br>
+                Feel free to explore our website to learn more about what we offer!
+            </p>
+        </div>
+
+        <!-- Team members introduction -->
+        <div class="team-section">
+            <h2 class="team-title">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="profile-icon">👤</div>
+                    <h3>John Doe</h3>
+                    <p>John is responsible for overall company strategy and vision.</p>
+                    <span class="role-badge">CEO</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="profile-icon">👤</div>
+                    <h3>Celina Thomas</h3>
+                    <p>Celina leads the technical and operations team.</p>
+                    <span class="role-badge">Team Lead</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="profile-icon">👤</div>
+                    <h3>Mike Tyson</h3>
+                    <p>Mike manages project delivery and client relationships.</p>
+                    <span class="role-badge">Delivery Head</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

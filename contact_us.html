@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBloom - Contact Us</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b1d28;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Navbar without search bar for Contact Us page */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(18, 43, 57, 0.95);
+            padding: 15px 40px;
+            z-index: 10;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00b4d8;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 100px;
+        }
+
+        /* Social Sidebar */
+        .social-sidebar {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 5;
+        }
+
+        .social-sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .social-sidebar a:hover {
+            opacity: 1;
+        }
+
+        /* Contact Info Heading */
+        .contact-info h1 {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            color: #e0e0e0;
+        }
+
+        /* Contact Form Card */
+        .contact-form-card {
+            background-color: rgba(18, 43, 57, 0.65);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            width: 450px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0a0a0;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #008080;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #008080;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #006666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Task 5 Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">🌐 TravelBloom</div>
+        <div class="nav-links">
+            <a href="./travel_recommendation.html">Home</a>
+            <a href="./about_us.html">About Us</a>
+            <a href="./contact_us.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="hero-section">
+        <!-- Social Sidebar -->
+        <div class="social-sidebar">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">📷</a>
+            <a href="#">▶</a>
+        </div>
+
+        <!-- Left Heading -->
+        <div class="contact-info">
+            <h1>CONTACT US</h1>
+            <p>Get in touch</p>
+        </div>
+
+        <!-- Right Form Card -->
+        <div class="contact-form-card">
+            <form id="contactForm" onsubmit="event.preventDefault(); alert('Message submitted successfully!');">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Enter your message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

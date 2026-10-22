@@ -1,81 +1,85 @@
 let travelData = null;
 
-// Task 6: Fetch data from travel_recommendation_api.json
+// Task 6: Fetch JSON data using fetch API and verify in console.log
 fetch('./travel_recommendation_api.json')
     .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
     })
     .then(data => {
         travelData = data;
-        console.log('Fetched Travel Data:', travelData);
+        // Log to console as required by Task 6 instructions
+        console.log('Fetched travel data successfully:', travelData);
     })
     .catch(error => {
         console.error('Error fetching travel recommendation data:', error);
     });
+    // Task 7: Keyword search matching using toLowerCase()
+function searchRecommendations() {
+    const inputField = document.getElementById('conditionInput');
+    if (!inputField) return;
 
-// DOM Elements
-const btnSearch = document.getElementById('btnSearch');
-const btnClear = document.getElementById('btnClear');
-const conditionInput = document.getElementById('conditionInput');
-const resultContainer = document.getElementById('resultContainer');
+    // Convert search input to lower case and remove leading/trailing whitespace
+    const keyword = inputField.value.trim().toLowerCase();
 
-// Task 7 & 8: Search Keyword Logic
-function handleSearch() {
+    if (!keyword) {
+        const resultContainer = document.getElementById('resultContainer');
+        if (resultContainer) resultContainer.style.display = 'none';
+        return;
+    }
+
     if (!travelData) {
         console.warn('Data is not loaded yet.');
         return;
     }
 
-    const keyword = conditionInput.value.trim().toLowerCase();
-    resultContainer.innerHTML = ''; // Clear previous results
-
-    if (!keyword) {
-        resultContainer.style.display = 'none';
-        return;
-    }
-
-    let recommendations = [];
+    let results = [];
 
     // Match keyword variations for beaches, temples, and countries
     if (keyword === 'beach' || keyword === 'beaches') {
-        recommendations = travelData.beaches || [];
+        results = travelData.beaches || [];
     } else if (keyword === 'temple' || keyword === 'temples') {
-        recommendations = travelData.temples || [];
+        results = travelData.temples || [];
     } else if (keyword === 'country' || keyword === 'countries') {
-        // Collect all cities across all country entries
         if (travelData.countries) {
             travelData.countries.forEach(country => {
-                recommendations = recommendations.concat(country.cities);
+                results = results.concat(country.cities);
             });
         }
     } else {
-        // Match specific country or city names
+        // Direct country or city name matching
         if (travelData.countries) {
             const matchedCountry = travelData.countries.find(
                 c => c.name.toLowerCase().includes(keyword)
             );
             if (matchedCountry) {
-                recommendations = matchedCountry.cities;
+                results = matchedCountry.cities;
             }
         }
     }
 
-    displayResults(recommendations);
+    // Pass results to Task 8 display function
+    displayResults(results);
 }
-
-// Display matching recommendations
+// Task 8: Display recommendations with image, title, and description
 function displayResults(results) {
+    const resultContainer = document.getElementById('resultContainer');
+    if (!resultContainer) return;
+
+    // Clear previous results
+    resultContainer.innerHTML = '';
+
     if (!results || results.length === 0) {
         resultContainer.innerHTML = '<p class="no-result">No recommendations found.</p>';
         resultContainer.style.display = 'block';
         return;
     }
 
-    resultContainer.style.display = 'grid'; // CSS grid layout
+    resultContainer.style.display = 'grid'; // Enable display grid
 
+    // Generate recommendation card HTML elements
     results.forEach(place => {
         const card = document.createElement('div');
         card.className = 'result-card';
@@ -90,25 +94,13 @@ function displayResults(results) {
         resultContainer.appendChild(card);
     });
 }
-
-// Clear button handler
-function handleClear() {
-    conditionInput.value = '';
-    resultContainer.innerHTML = '';
-    resultContainer.style.display = 'none';
-}
-
-// Attach event listeners
-if (btnSearch) btnSearch.addEventListener('click', handleSearch);
-if (btnClear) btnClear.addEventListener('click', handleClear);
-
-// Task 9: Clear button logic
+// Task 9: Clear button logic to clear input field and results
 function clearSearch() {
-    const conditionInput = document.getElementById('conditionInput');
+    const inputField = document.getElementById('conditionInput');
     const resultContainer = document.getElementById('resultContainer');
 
-    if (conditionInput) {
-        conditionInput.value = '';
+    if (inputField) {
+        inputField.value = '';
     }
 
     if (resultContainer) {
@@ -117,7 +109,17 @@ function clearSearch() {
     }
 }
 
-// Attach event listener using the existing btnClear variable
-if (btnClear) {
-    btnClear.addEventListener('click', clearSearch);
-}
+// Attach event listeners after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const btnSearch = document.getElementById('btnSearch');
+    const btnClear = document.getElementById('btnClear');
+
+    if (btnSearch) {
+        btnSearch.addEventListener('click', searchRecommendations);
+    }
+
+    if (btnClear) {
+        btnClear.addEventListener('click', clearSearch);
+    }
+});
+    
